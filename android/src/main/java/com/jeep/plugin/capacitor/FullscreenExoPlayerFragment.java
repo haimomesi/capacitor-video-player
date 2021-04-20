@@ -233,9 +233,13 @@ public class FullscreenExoPlayerFragment extends Fragment {
                 put("dismiss", "1");
             }
         };
-        player.seekTo(0);
-        player.setVolume(curVolume);
-        releasePlayer();
+
+        if (player != null) {
+            player.seekTo(0);
+            player.setVolume(curVolume);
+            releasePlayer();
+        }
+
         NotificationCenter.defaultCenter().postNotification("playerFullscreenDismiss", info);
     }
 
@@ -679,6 +683,7 @@ public class FullscreenExoPlayerFragment extends Fragment {
                     stateString = "ExoPlayer.STATE_ENDED     -";
                     player.seekTo(0);
                     player.setVolume(curVolume);
+                    releasePlayer();
                     NotificationCenter.defaultCenter().postNotification("playerItemEnd", info);
                     break;
                 default:
