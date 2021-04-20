@@ -107,7 +107,7 @@ public class CapacitorVideoPlayer extends Plugin {
                 call.success(ret);
                 return;
             }
-            String subtitle = "";
+            String subtitle = null;
             if (call.getData().has("subtitle")) {
                 subtitle = call.getString("subtitle");
             }
@@ -165,8 +165,7 @@ public class CapacitorVideoPlayer extends Plugin {
             path = url;
         } else {
             if (url.substring(0, 11).equals("application")) {
-                String filesDir = context.getFilesDir() + "/";
-                path = filesDir + url.substring(url.lastIndexOf('/') + 1);
+                path = url.substring(11);
                 File file = new File(path);
                 if (!file.exists()) {
                     path = null;
@@ -759,13 +758,6 @@ public class CapacitorVideoPlayer extends Plugin {
                                 new Runnable() {
                                     @Override
                                     public void run() {
-                                        FrameLayout frameLayoutView = getBridge().getActivity().findViewById(frameLayoutViewId);
-
-                                        if (frameLayoutView != null) {
-                                            ((ViewGroup) getBridge().getWebView().getParent()).removeView(frameLayoutView);
-                                            removeFragment(fsFragment);
-                                        }
-                                        fsFragment = null;
                                         NotificationCenter.defaultCenter().removeAllNotifications();
                                         notifyListeners("jeepCapVideoPlayerEnded", data);
                                     }
