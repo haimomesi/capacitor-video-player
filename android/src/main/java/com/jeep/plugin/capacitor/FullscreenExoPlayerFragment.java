@@ -684,7 +684,7 @@ public class FullscreenExoPlayerFragment extends Fragment {
                     player.seekTo(0);
                     player.setVolume(curVolume);
                     releasePlayer();
-                    NotificationCenter.defaultCenter().postNotification("playerItemEnd", info);
+                    // NotificationCenter.defaultCenter().postNotification("playerItemEnd", info);
                     break;
                 default:
                     stateString = "UNKNOWN_STATE             -";
