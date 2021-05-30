@@ -210,7 +210,7 @@ export class VideoPlayer {
 
   private async _setPlayer(): Promise<boolean> {
     return new Promise(async resolve => {
-      if (Hls.isSupported && this._videoType === 'application/x-mpegURL') {
+      if (Hls.isSupported() && this._videoType === 'application/x-mpegURL') {
         var hls = new Hls();
         hls.loadSource(this._url);
         hls.attachMedia(this.videoEl!);

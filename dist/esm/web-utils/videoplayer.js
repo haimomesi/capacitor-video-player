@@ -187,7 +187,7 @@ export class VideoPlayer {
     _setPlayer() {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve) => __awaiter(this, void 0, void 0, function* () {
-                if (Hls.isSupported && this._videoType === 'application/x-mpegURL') {
+                if (Hls.isSupported() && this._videoType === 'application/x-mpegURL') {
                     var hls = new Hls();
                     hls.loadSource(this._url);
                     hls.attachMedia(this.videoEl);
